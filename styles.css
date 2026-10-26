@@ -1,0 +1,15 @@
+body {
+    background-image: url("fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.formulario {
+    max-width: 800px;
+    width: 100%; 
+    margin: auto;
+    background: linear-gradient(to bottom right, red, black);
+    border-radius: 15px;
+}
