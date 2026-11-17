@@ -1,0 +1,24 @@
+# Archivos privados
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+
+# Bases de datos y respaldos
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# Dependencias
+/vendor/
+/node_modules/
+**/vendor/
+**/node_modules/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+!**/.env.example
