@@ -41,6 +41,8 @@ cd sistema-estudiante/example-app
 composer install
 ```
 
+Si Composer informa que no puede descomprimir paquetes, comprobar que la extensión `zip` esté habilitada en el PHP de la terminal o instalar `unzip`/7-Zip. Si aparece un error de conexión con MySQL, comprobar que `pdo_mysql` esté habilitada.
+
 ### 3. Crear el archivo de configuración
 
 En PowerShell:
