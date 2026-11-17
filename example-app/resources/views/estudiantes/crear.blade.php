@@ -41,9 +41,9 @@
             <label class="form-label">Asignatura</label>
             <select name="Asignatura" class="form-select mb-4" required>
                 <option value="">Seleccione una asignatura</option>
-                <option value="Ingeniería Informática">Ingeniería Informática</option>
-                <option value="Ingeniería Industrial">Ingeniería Industrial</option>
-                <option value="Administración de Empresas">Administración de Empresas</option>
+                <option value="Ingeniería Informática" {{ old('Asignatura') == 'Ingeniería Informática' ? 'selected' : '' }}>Ingeniería Informática</option>
+                <option value="Ingeniería Industrial" {{ old('Asignatura') == 'Ingeniería Industrial' ? 'selected' : '' }}>Ingeniería Industrial</option>
+                <option value="Administración de Empresas" {{ old('Asignatura') == 'Administración de Empresas' ? 'selected' : '' }}>Administración de Empresas</option>
             </select>
 
             <button type="submit" class="btn btn-success w-100">

@@ -1,65 +1,61 @@
 # Sistema de Gestión de Estudiantes
 
-Aplicación web desarrollada con **Laravel** y **PHP**, que permite administrar la información de los estudiantes mediante una base de datos MySQL.
+Aplicación web desarrollada con **Laravel 12**, PHP y MySQL para administrar registros de estudiantes.
 
-## Descripción del proyecto
+## Funcionalidades
 
-Este proyecto consiste en un sistema de gestión de estudiantes que permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre los registros almacenados en la base de datos.
+- Registrar estudiantes.
+- Consultar el listado de estudiantes.
+- Editar sus datos.
+- Eliminar registros.
 
-La información de los estudiantes se administra mediante la tabla `personal`.
+La información se almacena en la tabla `personal`.
 
-## Tecnologías utilizadas
+## Tecnologías
 
 - PHP 8.2 o superior.
 - Laravel 12.
 - Composer.
 - MySQL.
-- XAMPP.
-- HTML, CSS y Blade.
+- XAMPP (o un entorno equivalente).
+- Blade, HTML y CSS.
 
 ## Requisitos previos
 
-Antes de instalar el proyecto, es necesario tener:
+Instalar PHP 8.2+, Composer, MySQL y Git. Si se utiliza XAMPP, iniciar el servicio MySQL antes de ejecutar la aplicación.
 
-- PHP 8.2 o superior.
-- Composer instalado.
-- MySQL.
-- XAMPP o un entorno equivalente.
-- Git.
+## Instalación en Windows
 
-## Instalación del proyecto
+Los comandos siguientes se ejecutan desde una terminal.
 
-### 1. Clonar el repositorio
-
-Abrir una terminal y ejecutar:
+### 1. Descargar el repositorio
 
 ```bash
 git clone https://github.com/LycsCode/sistema-estudiante.git
-```
-
-### 2. Ingresar a la carpeta de Laravel
-
-```bash
 cd sistema-estudiante/example-app
 ```
 
-### 3. Instalar las dependencias
+### 2. Instalar dependencias de PHP
 
 ```bash
 composer install
 ```
 
-### 4. Configurar el archivo de entorno
+Si Composer informa que no puede descomprimir paquetes, comprobar que la extensión `zip` esté habilitada en el PHP de la terminal o instalar `unzip`/7-Zip. Si aparece un error de conexión con MySQL, comprobar que `pdo_mysql` esté habilitada.
 
-Crear el archivo `.env` a partir del ejemplo:
+### 3. Crear el archivo de configuración
 
-En Windows PowerShell:
+En PowerShell:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-En el archivo `.env`, configurar la conexión a MySQL según el entorno local:
+### 4. Crear la base de datos
+
+Abrir phpMyAdmin o el cliente MySQL y crear una base de datos llamada `registro_estudiantes`.
+
+En el archivo `.env`, verificar que la conexión esté configurada así. Ajustar usuario y contraseña si el entorno local utiliza otros datos:
 
 ```env
 DB_CONNECTION=mysql
@@ -70,77 +66,54 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Importante:** Crear previamente la base de datos `registro_estudiantes` en MySQL. Si se utilizan otras credenciales, deben modificarse según la configuración local.
+No subir el archivo `.env` a GitHub: contiene configuración local y puede contener credenciales.
 
-El archivo `.env` contiene información privada y no debe subirse a GitHub.
-
-### 5. Generar la clave de Laravel
+### 5. Generar la clave de la aplicación
 
 ```bash
 php artisan key:generate
 ```
 
-### 6. Limpiar la configuración
-
-```bash
-php artisan config:clear
-```
-
-### 7. Ejecutar las migraciones
+### 6. Crear las tablas
 
 ```bash
 php artisan migrate
 ```
 
-Este comando crea las tablas necesarias para el funcionamiento del proyecto, incluida la tabla `personal`, donde se almacenan los estudiantes.
+Las migraciones incluidas en `database/migrations` crean la estructura necesaria, incluida la tabla `personal`. No se necesita importar un archivo SQL para crear esa estructura. Este comando crea las tablas; no importa automáticamente los registros que existieran en otro computador.
 
-### 8. Iniciar el servidor
+### 7. Iniciar Laravel
 
 ```bash
 php artisan serve
 ```
 
-Abrir en el navegador la dirección que aparece en la terminal. Normalmente es:
+Abrir en el navegador la dirección que muestra la terminal. Normalmente es:
 
-```text
+```
 http://127.0.0.1:8000
 ```
 
-## Estructura de la información de estudiantes
+## Estructura principal
 
-La tabla `personal` contiene los siguientes campos:
+- `example-app/`: aplicación Laravel.
+- `example-app/app/Models/`: modelos.
+- `example-app/app/Http/Controllers/`: controladores.
+- `example-app/routes/web.php`: rutas web.
+- `example-app/resources/views/`: vistas Blade.
+- `example-app/database/migrations/`: migraciones de base de datos.
+- `example-app/public/`: archivos públicos, como CSS e imágenes.
 
-| Campo | Descripción |
-|---|---|
-| ID | Identificador del estudiante |
-| Nombre | Nombre del estudiante |
-| Correo | Correo electrónico |
-| Asignatura | Asignatura correspondiente |
-
-## Funcionalidades
-
-- Registrar estudiantes.
-- Consultar estudiantes registrados.
-- Editar información de estudiantes.
-- Eliminar estudiantes.
+En la raíz también se conservan algunos archivos PHP de la versión anterior del proyecto. La aplicación Laravel que se debe ejecutar está dentro de `example-app`; esos archivos PHP de la raíz no son el punto de entrada de Laravel.
 
 ## Base de datos
 
-El proyecto utiliza MySQL para almacenar la información.
+La tabla `personal` contiene los campos utilizados por el sistema, entre ellos `ID`, `Nombre`, `Correo` y `Asignatura`. La definición exacta está en la migración del proyecto.
 
-La estructura de la tabla `personal` se genera mediante una migración de Laravel ubicada en:
-
-```text
-database/migrations/
-```
-
-No es necesario importar un archivo SQL para crear la estructura de la tabla.
-
-Los datos de prueba o registros deben agregarse desde la aplicación o mediante el procedimiento correspondiente.
+La migración crea la estructura, pero no recupera datos de una base de datos local anterior. Cada instalación debe configurar su propia base de datos.
 
 ## Seguridad
 
-- El archivo `.env` no se incluye en el repositorio.
-- Las credenciales de la base de datos deben configurarse localmente.
-- Los archivos SQL y respaldos de bases de datos no forman parte del repositorio.
-- Cada persona
+- No publicar archivos `.env`, contraseñas ni credenciales.
+- No subir respaldos ni volcados de bases de datos con información personal.
+- Mantener `.env.example` como plantilla sin credenciales privadas.
